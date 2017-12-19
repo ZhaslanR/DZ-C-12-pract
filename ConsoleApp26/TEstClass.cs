@@ -12,7 +12,7 @@ namespace ConsoleApp26
         public event PropertyEventHandler PropertyChanged;
         PropertyEventArgs args = new PropertyEventArgs();
 
-        public int number;
+        private int number;
 
         public int Number
         {
@@ -21,13 +21,8 @@ namespace ConsoleApp26
             {
                 number = value;
                 args.Message = String.Format("Значение измениловь на {0}.", value);
-                EventOccured();
+                PropertyChanged?.Invoke(this, args);
             }
-        }
-
-        private void EventOccured()
-        {
-            PropertyChanged?.Invoke(this, args);
         }
     }
 }
